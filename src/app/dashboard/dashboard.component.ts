@@ -36,6 +36,7 @@ import { FormsModule } from '@angular/forms';
           <th>Operational Health</th>
           <th>Active Incidents</th>
           <th>Closed Cases</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -46,9 +47,12 @@ import { FormsModule } from '@angular/forms';
           <td>{{ item.status }}</td>
           <td>{{ item.open_issues }}</td>
           <td>{{ item.resolved_tickets }}</td>
+          <td>
+            <button (click)="deleteSoftware(item.id)">🗑️ Delete</button>
+          </td>
         </tr>
         <tr *ngIf="dashboard.length === 0">
-          <td colspan="6" style="text-align:center;">No data available</td>
+          <td colspan="7" style="text-align:center;">No data available</td>
         </tr>
       </tbody>
     </table>
@@ -98,5 +102,21 @@ export class DashboardComponent implements OnInit {
           alert('❌ Failed to add software');
         }
       });
+  }
+
+  deleteSoftware(id: number) {
+    if (confirm('Are you sure you want to delete this software?')) {
+      this.http.delete(`http://localhost:3000/dashboard/${id}`)
+        .subscribe({
+          next: () => {
+            alert('Software deleted 🗑️');
+            this.loadData(); // refresh table
+          },
+          error: (err) => {
+            console.error('Error deleting software:', err);
+            alert('❌ Failed to delete software');
+          }
+        });
+    }
   }
 }

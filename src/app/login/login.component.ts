@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Router } from '@angular/router'
+import { Router, RouterLink } from '@angular/router'
 
 @Component({
   selector: 'app-login',
   standalone: true,                                
-  imports: [ReactiveFormsModule, CommonModule, HttpClientModule],    
+  imports: [ReactiveFormsModule, CommonModule, HttpClientModule, RouterLink],    
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
@@ -30,7 +30,7 @@ export class LoginComponent {
       this.http.post('http://localhost:3000/login', this.loginForm.value).subscribe({
         next: (res: any) => {
           if(res.success){
-            this.router.navigate(['/home']);
+            this.router.navigate(['/dashboard']);
           }else{
             this.errorMessage = res.message;
           }
