@@ -10,6 +10,19 @@
   animation: fadeIn 0.4s ease-in-out;
 }
 
+.icon-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.login-icon img {
+  width: 80px;
+  height: auto;
+  opacity: 0.9;
+}
+
+
 /* Title */
 .login-container h2 {
   text-align: center;
