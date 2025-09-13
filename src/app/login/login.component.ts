@@ -27,7 +27,7 @@ export class LoginComponent {
 
   onLogin() {
     if (this.loginForm.valid) {
-      this.http.post('http://localhost:3000/login', this.loginForm.value).subscribe({
+      this.http.post('http://localhost:3000/auth/login', this.loginForm.value).subscribe({
         next: (res: any) => {
           if(res.success){
             this.router.navigate(['/dashboard']);

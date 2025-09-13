@@ -20,7 +20,7 @@ export class SignupComponent {
 
   onSignup() {
     if (this.username && this.password) {
-      this.http.post('http://localhost:3000/signup', {
+      this.http.post('http://localhost:3000/auth/signup', {
         username: this.username,
         password: this.password
       }).subscribe({

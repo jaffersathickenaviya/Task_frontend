@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+// import { AuthGuard } from '../app/guards/auth.guards';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },

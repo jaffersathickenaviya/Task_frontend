@@ -1,66 +1,63 @@
 <div class="dashboard-container">
-  
 
-<div class="title-bar">
-  <div class="logo-left">
-    <img src="icons/enaviya-logo.png" alt="Logo" />
+  <div class="title-bar">
+    <div class="logo-left">
+      <img src="icons/enaviya-logo.png" alt="Logo" />
+    </div>
+    <div class="title-text">
+      Enaviya Software Development Dashboard
+    </div>
+    <div class="logo-right">
+      <img src="icons/application-logo.png" alt="Logo" />
+    </div>
+
   </div>
-  
-  <div class="title-text">
-    Enaviya Software Development Dashboard
+
+  <!-- Add new software form -->
+  <div class="form-container">
+    <input [(ngModel)]="newApp.appName" placeholder="Software Name" />
+    <input [(ngModel)]="newApp.version" placeholder="Version" />
+    <select [(ngModel)]="newApp.status">
+      <option value="Running">Running</option>
+      <option value="Maintenance">Maintenance</option>
+      <option value="Critical">Critical</option>
+    </select>
+    <input [(ngModel)]="newApp.openIssues" type="number" placeholder="Open Issues" />
+    <input [(ngModel)]="newApp.resolvedTickets" type="number" placeholder="Closed Cases" />
+    <button (click)="addSoftware()">➕ Add</button>
   </div>
-  
-  <div class="logo-right">
-    <img src="icons/application-logo.png" alt="Logo" />
-  </div>
 
-</div>
-  
-<!-- Add new software form -->
-<div class="form-container">
-  <input [(ngModel)]="newApp.app_name" placeholder="Software Name" />
-  <input [(ngModel)]="newApp.version" placeholder="Version" />
-  <select [(ngModel)]="newApp.status">
-    <option value="Running">Running</option>
-    <option value="Maintenance">Maintenance</option>
-    <option value="Critical">Critical</option>
-  </select>
-  <input [(ngModel)]="newApp.open_issues" type="number" placeholder="Open Issues" />
-  <input [(ngModel)]="newApp.resolved_tickets" type="number" placeholder="Closed Cases" />
-  <button (click)="addSoftware()">➕ Add</button>
-</div>
+  <hr />
 
-<hr />
-
-<!-- Data table -->
-<table>
-  <thead>
-    <tr>
-      <th>Serial No</th>
-      <th>Software / Tool</th>
-      <th>Current Release</th>
-      <th>Operational Health</th>
-      <th>Active Incidents</th>
-      <th>Closed Cases</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let item of dashboard; let i = index">
-      <td>{{ i + 1 }}</td>
-      <td>{{ item.app_name }}</td>
-      <td>{{ item.version }}</td>
-      <td>{{ item.status }}</td>
-      <td>{{ item.open_issues }}</td>
-      <td>{{ item.resolved_tickets }}</td>
-      <td>
-        <button (click)="deleteSoftware(item.id)">🗑️ Delete</button>
-      </td>
-    </tr>
-    <tr *ngIf="dashboard.length === 0">
-      <td colspan="7" class="no-data">No data available</td>
-    </tr>
-  </tbody>
-</table>
+  <!-- Data table -->
+  <table>
+    <thead>
+      <tr>
+        <th>Serial No</th>
+        <th>Software / Tool</th>
+        <th>Current Release</th>
+        <th>Operational Health</th>
+        <th>Active Incidents</th>
+        <th>Closed Cases</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of dashboard; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ item.appName }}</td>
+        <td>{{ item.version }}</td>
+        <td>{{ item.status }}</td>
+        <td>{{ item.openIssues }}</td>
+        <td>{{ item.resolvedTickets }}</td>
+        <td>
+          <button (click)="deleteSoftware(item.id)">🗑️ Delete</button>
+        </td>
+      </tr>
+      <tr *ngIf="dashboard.length === 0">
+        <td colspan="7" class="no-data">No data available</td>
+      </tr>
+    </tbody>
+  </table>
 
 </div>
